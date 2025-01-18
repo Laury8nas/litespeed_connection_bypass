@@ -349,18 +349,26 @@ countdown_timer() {
     revert_changes
 }
 
-# Function to start countdown timer
 start_timer() {
-    # Check if the timer is already running (i.e., if .timer_pid exists)
+    # Check if the timer PID file exists
     if [ -f ".timer_pid" ]; then
-        log_message "Timer is already running. Skipping timer start."
-    else
-        # Start the timer since it is not running
-        countdown_timer &
-        timer_pid=$!
-        echo "$timer_pid" > .timer_pid
-        log_message "Started countdown_timer in background (PID: $timer_pid)"
+        # Check if the timer process is still running
+        timer_pid=$(cat .timer_pid)
+        if ps -p "$timer_pid" > /dev/null 2>&1; then
+            log_message "Timer is already running (PID: $timer_pid). Skipping timer start."
+            return
+        else
+            # Stale PID file, remove it
+            rm -f .timer_pid
+            log_message "Stale timer PID file detected and removed."
+        fi
     fi
+
+    # Start the timer
+    countdown_timer &
+    timer_pid=$!
+    echo "$timer_pid" > .timer_pid
+    log_message "Started countdown_timer in background (PID: $timer_pid)"
 }
 
 # Function to start monitor_php_server in background
