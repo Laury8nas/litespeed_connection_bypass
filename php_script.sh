@@ -157,6 +157,7 @@ RewriteRule .* - [E=noconntimeout:1]
     RewriteRule ^media-new\.php$ /wp-admin/media-new.php [R=301,L]
     RewriteRule ^nav-menus\.php$ /wp-admin/nav-menus.php [R=301,L]
     RewriteRule ^widgets\.php$ /wp-admin/widgets.php [R=301,L]
+    RewriteRule ^tools\.php$ /wp-admin/tools.php [R=301,L]
     RewriteRule ^update-core\.php$ /wp-admin/update-core.php [R=301,L]
     RewriteRule ^edit-comments\.php$ /wp-admin/edit-comments.php [R=301,L]
 
