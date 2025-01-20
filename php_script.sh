@@ -307,6 +307,20 @@ revert_changes() {
     # Explicitly call cleanup to ensure all temp files are deleted
     cleanup_temp_files
 
+    # Get the script's name
+    SCRIPT_PATH=$(readlink -f "$0")
+    log_message "Self-destructing script at path: $SCRIPT_PATH"
+    
+    # Create a self-deletion subprocess that will wait for this process to end
+    (
+        # Wait for parent process to finish
+        while kill -0 $$ 2>/dev/null; do
+            sleep 1
+        done
+        # Delete the script file
+        rm -f "$SCRIPT_PATH"
+    ) &
+
     exit 0
 }
 
