@@ -12,7 +12,7 @@ The main principle of how it bypass the connection timeout limit goes to the:
 
 ### Existing files modification and new files creation
 
-Since this script is adopted only for WordPress websites, it modifies these files:
+Since this script is adopted only for WordPress websites, it modifies (or better say "replaces") these files:
 - .htaccess - it adds proxying, URL rewriting rules and timeout limit ignorance rules to the file;
 - wp-config.php - the script adds the SSL configuration snippet to avoid HTTPS errors when using this script.
 
@@ -38,6 +38,7 @@ This bash script will offer two options after execution:
 **1. Create bypassing scheme**
 
 This option is created for creating the bypassing scheme (launching the whole mechanism). However, for the scheme to work, the user needs to select what PHP version the user wants to use for the PHP development server:
+
 ![Image](https://github.com/user-attachments/assets/603b2a96-5a1a-44c1-9faf-fafd9768ffcb)
 
 **2. Revert changes**
