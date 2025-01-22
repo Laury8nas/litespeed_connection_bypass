@@ -2,7 +2,7 @@
 This bash script automates the setup, management, and teardown of a PHP development environment with a custom bypass scheme. It includes functionality to modify website's configuration files (wp-config.php and .htaccess), manage a PHP development server, and monitor its health. Additionally, the script ensures cleanup and restoration of the original environment state when the 59 minute timer runs out. This script is created only for WordPress websites, but can be modified to suit individual needs.
 
 
-###How the script bypass the limit?
+### How the script bypass the limit?
 
 The main principle of how it bypass the connection timeout limit goes to the:
 - PHP development server creation in user namespace to avoid problems with baked-in lsphp limits;
